@@ -1,199 +1,104 @@
-import React, { useState } from 'react';
-import { X, Copy, Check, Clock, Lock, ExternalLink } from 'lucide-react';
-import { CardVariant } from '../types';
+import React from 'react';
+import { X, Gavel, Shield, ArrowRight, ChevronRight } from 'lucide-react';
 
-interface ContactSheetProps {
+interface AboutSheetProps {
   isOpen: boolean;
   onClose: () => void;
-  type: CardVariant | null;
 }
 
-const ContactSheet: React.FC<ContactSheetProps> = ({ isOpen, onClose, type }) => {
-  const [copied, setCopied] = useState(false);
-
-  if (!isOpen || !type) return null;
-
-  const handleCopy = (text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  const handleBackdropClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) onClose();
-  };
-
-  const getConfig = () => {
-    switch (type) {
-      case CardVariant.ACADEMIC:
-        return {
-          title: 'Academic Contact',
-          email: 'ebula251056@navotaspolytechniccollege.edu.ph',
-          emailLabel: 'Academic Email',
-          description: 'Student at Navotas Polytechnic College',
-          responseTime: 'I usually respond within 24 hours.',
-          themeColor: 'bg-[#bbf7d0] text-[#002204]', // Primary Container
-          buttonText: 'Send Email',
-          showLogos: true,
-          isNgl: false
-        };
-      case CardVariant.PERSONAL:
-        return {
-          title: 'Personal Contact',
-          email: 'eldrexdelosreyesbula@gmail.com',
-          emailLabel: 'Email Address',
-          description: 'Personal Email Address',
-          responseTime: 'I usually respond within 24 hours.',
-          themeColor: 'bg-[#ffdbc0] text-[#2e1500]', // Peach Container
-          buttonText: 'Send Email',
-          showLogos: false,
-          isNgl: false
-        };
-      case CardVariant.NGL:
-        return {
-          title: 'NGL Anonymous',
-          email: 'https://ngl.link/eldrex.me',
-          emailLabel: 'NGL Link',
-          description: 'Send anonymous messages',
-          subHeadline: 'Ask Me Anything',
-          responseTime: '100% Anonymous. No sign-up.',
-          themeColor: 'bg-[#ffdad6] text-[#410002]', // Red Container
-          buttonText: 'Open NGL',
-          showLogos: false,
-          isNgl: true
-        };
-      default:
-        return null;
-    }
-  };
-
-  const config = getConfig();
-  if (!config) return null;
+const AboutSheet: React.FC<AboutSheetProps> = ({ isOpen, onClose }) => {
+  if (!isOpen) return null;
 
   return (
-    <div 
-      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4"
-    >
+    <div className="fixed inset-0 z-[80] flex items-end sm:items-center justify-center p-0 sm:p-4">
       {/* Backdrop */}
       <div 
-        className="absolute inset-0 bg-[#1b1c17]/40 backdrop-blur-sm transition-opacity duration-500 ease-md-standard"
-        onClick={handleBackdropClick}
+        className="absolute inset-0 bg-[#1b1c17]/40 backdrop-blur-sm animate-fade-in"
+        onClick={onClose}
       />
-
-      {/* Sheet/Modal - MD3 Elevation Level 3 */}
-      <div className="relative w-full max-w-[420px] bg-[#f4f4eb] rounded-t-[28px] sm:rounded-[28px] p-6 shadow-2xl transform transition-transform animate-in slide-in-from-bottom-20 duration-500 ease-md-emphasized flex flex-col items-center overflow-hidden">
+      
+      {/* Sheet */}
+      <div className="relative w-full max-w-[420px] bg-[#fdfdf6] rounded-t-[32px] sm:rounded-[32px] shadow-2xl animate-sheet-up flex flex-col max-h-[90vh] overflow-hidden">
         
-        {/* Drag Handle */}
-        <div className="w-8 h-1 bg-[#74796d]/40 rounded-full mb-6 sm:hidden"></div>
-
         {/* Header */}
-        <div className="w-full flex justify-between items-center mb-6">
-          <h2 className="text-[22px] font-normal text-[#1b1c17]">{config.title}</h2>
+        <div className="flex items-center justify-between p-6 pb-2">
+          <h2 className="text-[24px] font-normal text-[#1b1c17]">About Contact.me</h2>
           <button 
             onClick={onClose}
-            className="p-2 bg-[#e2e3dd] rounded-full hover:bg-[#c6c8c0] transition-colors"
+            className="p-2 bg-[#e2e3dd] rounded-full hover:bg-[#c6c8c0] transition-colors active:scale-95"
           >
             <X className="w-6 h-6 text-[#44473f]" />
           </button>
         </div>
 
-        {/* Dynamic Visual Content */}
-        <div className="flex items-center justify-center mb-6">
-          {config.isNgl ? (
-            <div className="w-24 h-24 rounded-[28px] bg-[#ffb4ab] flex items-center justify-center shadow-md transform rotate-3">
-               <div className="text-[#690005]">
-                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-               </div>
-            </div>
-          ) : config.showLogos ? (
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-2xl bg-white overflow-hidden shadow-sm flex items-center justify-center">
-                <img src="https://navotaspolytechniccollege.edu.ph/wp-content/themes/yootheme/cache/d3/s5-d3060735.webp" alt="ICS" className="w-full h-full object-contain p-2" />
-              </div>
-              <div className="w-20 h-20 rounded-[24px] border-4 border-[#f4f4eb] shadow-lg z-10 -mx-4 overflow-hidden">
-                 <img src="https://eldrex.landecs.org/squad/eldrex.png" alt="Profile" className="w-full h-full object-cover grayscale contrast-125" />
-              </div>
-              <div className="w-14 h-14 rounded-2xl bg-white overflow-hidden shadow-sm flex items-center justify-center">
-                <img src="https://navotaspolytechniccollege.edu.ph/wp-content/themes/yootheme/cache/66/Favicon-66de9ae4.webp" alt="NPC" className="w-full h-full object-contain p-2" />
-              </div>
-            </div>
-          ) : (
-             <div className="w-24 h-24 rounded-[28px] border-4 border-[#f4f4eb] shadow-lg overflow-hidden">
-                 <img src="https://eldrex.landecs.org/squad/eldrex.png" alt="Profile" className="w-full h-full object-cover grayscale contrast-125" />
-             </div>
-          )}
-        </div>
+        {/* Content - Scrollable */}
+        <div className="overflow-y-auto p-6 pt-2 space-y-8 scrollbar-hide">
+          
+          {/* Version Info */}
+          <div>
+            <h3 className="text-lg font-medium text-[#1b1c17]">Contact.me Portal</h3>
+            <p className="text-sm text-[#44473f] bg-[#e2e3dd] inline-block px-3 py-1 rounded-full mt-2 font-medium">
+              Version 1.0
+            </p>
+          </div>
 
-        <h3 className="text-2xl font-normal text-[#1b1c17] text-center mb-1">
-            {config.subHeadline || 'Eldrex Delos Reyes Bula'}
-        </h3>
-        <p className="text-sm text-[#44473f] text-center mb-8 px-4 leading-relaxed">
-            {config.description}
-        </p>
+          {/* Description */}
+          <div className="space-y-3">
+            <h4 className="text-base font-bold text-[#1b1c17]">What is Contact.me?</h4>
+            <p className="text-sm text-[#44473f] leading-relaxed">
+              Contact.me is a personal digital contact designed to provide a clear, professional, and structured way to connect with Eldrex Delos Reyes Bula.
+            </p>
+            <p className="text-sm text-[#44473f] leading-relaxed">
+              It separates academic and personal communication channels, each with its own purpose and expectations, helping ensure messages are sent through the most appropriate path and receive timely responses.
+            </p>
+          </div>
 
-        {/* MD3 Filled Input Style Container */}
-        <div className="w-full space-y-4">
-            <div className="group relative">
-                <div className="flex items-center gap-3 p-4 bg-[#e2e3dd] rounded-t-[16px] rounded-b-[4px] border-b border-[#74796d] group-hover:bg-[#d5d6d0] transition-colors">
-                    <div className="flex-1 min-w-0">
-                        <label className="block text-xs font-medium text-[#44473f] mb-0.5">
-                            {config.emailLabel}
-                        </label>
-                        <p className="text-sm font-medium text-[#1b1c17] truncate select-all">
-                            {config.email}
-                        </p>
-                    </div>
-                    <button 
-                        onClick={() => handleCopy(config.email)}
-                        className={`p-3 rounded-full transition-all active:scale-95 ${config.isNgl ? 'bg-[#ffb4ab] text-[#690005]' : 'bg-[#bbf7d0] text-[#002204]'}`}
-                    >
-                        {copied ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
-                    </button>
+          {/* Links Section */}
+          <div className="space-y-4">
+            <h4 className="text-base font-bold text-[#1b1c17] mb-2">Links</h4>
+            
+            {/* Terms */}
+            <button className="w-full flex items-center justify-between group p-1 active:scale-[0.98] transition-transform">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-[#e2e3dd] flex items-center justify-center text-[#44473f]">
+                  <Gavel className="w-5 h-5" />
                 </div>
-            </div>
-
-            {/* Info Card - Surface Variant */}
-            <div className={`p-4 rounded-[20px] flex gap-4 ${config.isNgl ? 'bg-[#ffdad6]/50' : 'bg-[#c3eed0]/30'}`}>
-                <div className={`p-2 rounded-full h-fit ${config.isNgl ? 'bg-[#ffdad6] text-[#410002]' : 'bg-[#bbf7d0] text-[#002204]'}`}>
-                    {config.isNgl ? <Lock className="w-5 h-5" /> : <Clock className="w-5 h-5" />}
+                <div className="text-left">
+                  <span className="block text-base font-medium text-[#1b1c17]">Terms of Use</span>
+                  <span className="block text-xs text-[#44473f]">Guidelines for using the Contact.me</span>
                 </div>
-                <div>
-                    <h4 className="text-sm font-bold text-[#1b1c17] mb-0.5">
-                        {config.isNgl ? 'Anonymous' : 'Response Time'}
-                    </h4>
-                    <p className="text-sm text-[#44473f] leading-relaxed">
-                        {config.responseTime}
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        {/* MD3 Buttons */}
-        <div className="w-full flex gap-3 mt-8">
-            <button 
-                onClick={onClose}
-                className="flex-1 h-12 rounded-full text-[#002204] font-medium hover:bg-[#dce8d6] transition-colors border border-[#74796d]/20"
-            >
-                Cancel
+              </div>
+              <ChevronRight className="w-5 h-5 text-[#44473f]/50 group-hover:text-[#1b1c17] group-hover:translate-x-1 transition-all" />
             </button>
-            <button 
-                onClick={() => {
-                    if (config.isNgl) {
-                        window.open(config.email, '_blank');
-                    } else {
-                        window.location.href = `mailto:${config.email}`;
-                    }
-                }}
-                className={`flex-1 h-12 rounded-full font-medium transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow-md active:scale-95 ${config.themeColor}`}
-            >
-                {config.buttonText}
-                {config.isNgl && <ExternalLink className="w-4 h-4" />}
-            </button>
-        </div>
 
+            {/* Privacy */}
+            <button className="w-full flex items-center justify-between group p-1 active:scale-[0.98] transition-transform">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-[#e2e3dd] flex items-center justify-center text-[#44473f]">
+                  <Shield className="w-5 h-5" />
+                </div>
+                <div className="text-left">
+                  <span className="block text-base font-medium text-[#1b1c17]">Privacy Policy</span>
+                  <span className="block text-xs text-[#44473f]">How your data and interactions are handled</span>
+                </div>
+              </div>
+              <ChevronRight className="w-5 h-5 text-[#44473f]/50 group-hover:text-[#1b1c17] group-hover:translate-x-1 transition-all" />
+            </button>
+          </div>
+
+          {/* Footer */}
+          <div className="pt-8 pb-4 text-center border-t border-[#74796d]/10">
+            <p className="text-xs text-[#44473f]/60 font-medium">
+              © 2026 Contact.me
+            </p>
+            <p className="text-xs text-[#44473f]/60 mt-1">
+              All rights reserved
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default ContactSheet;
+export default AboutSheet;
