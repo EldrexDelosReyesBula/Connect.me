@@ -15,12 +15,18 @@ const Header: React.FC<HeaderProps> = ({ onInfoClick }) => {
       >
         <Info className="w-6 h-6" />
       </button>
-      
+
       <h1 className="text-[22px] font-normal text-[#1b1c17] tracking-tight">Contact.me</h1>
-      
-      <div className="w-10 h-10 rounded-full bg-[#e2e3dd] text-[#44473f] flex items-center justify-center font-medium text-sm shadow-sm">
+
+      <a 
+        href="https://eldrex-blog.vercel.app" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="w-10 h-10 rounded-full bg-[#e2e3dd] text-[#44473f] flex items-center justify-center font-medium text-sm shadow-sm hover:scale-105 transition-transform duration-300"
+        aria-label="Visit Eldrex Blog"
+      >
         EB
-      </div>
+      </a>
     </header>
   );
 };
