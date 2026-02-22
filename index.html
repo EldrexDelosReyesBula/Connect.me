@@ -9,6 +9,10 @@
       tailwind.config = {
         theme: {
           extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Outfit', 'sans-serif'],
+            },
             transitionTimingFunction: {
               'md-emphasized': 'cubic-bezier(0.2, 0.0, 0.0, 1.0)',
               'md-standard': 'cubic-bezier(0.2, 0.0, 0, 1.0)',
@@ -18,15 +22,24 @@
               'surface-variant': '#f4f4eb',
               'on-surface': '#1b1c17',
               'primary': '#3e6a27',
+              'primary-container': '#bbf7d0',
+              'on-primary-container': '#002204',
+              'secondary-container': '#dce8d6',
+              'on-secondary-container': '#121f0e',
+              'tertiary-container': '#ffdbc0',
+              'on-tertiary-container': '#2e1500',
+              'error-container': '#ffdad6',
+              'on-error-container': '#410002',
+              'outline': '#74796d',
             }
           }
         }
       }
     </script>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Inter:wght@400;500;600&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
       body {
-        font-family: 'Roboto', 'Inter', sans-serif;
+        font-family: 'Inter', sans-serif;
         background-color: #fdfdf6; /* Material Surface Color */
         color: #1b1c17;
       }
