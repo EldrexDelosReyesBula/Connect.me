@@ -3,7 +3,6 @@ import { ArrowLeft, Send, GraduationCap, User, X, FileText } from 'lucide-react'
 import { ComposeModalProps } from '../types';
 
 const TEMPLATES = [
-  // PROFESSIONAL TEMPLATES
   {
     label: 'Meeting Request',
     subject: 'Request for Meeting: [Your Name]',
@@ -32,41 +31,36 @@ const TEMPLATES = [
 
   // EDUCATIONAL TEMPLATES
   {
-    label: 'Class Question (English)',
+    label: 'Class Question',
     subject: 'Question about [Subject/Topic]',
-    body: 'Hi [Classmate Name],\n\nI just wanted to ask if we have any updates or assignments for [Subject/Topic]. Also, do you know if we have a Google Classroom or group chat for this subject?\n\nThanks!\n[Your Name]'
+    body: 'Hi Eldrex,\n\nI just wanted to ask if we have any updates or assignments for [Subject/Topic]. Also, do you know if we have a Google Classroom or group chat for this subject?\n\nThanks!\n[Your Name]'
   },
   {
-    label: 'Class Question (Tagalog)',
+    label: 'Tanong sa Klase',
     subject: 'Tanong tungkol sa [Subject/Topic]',
-    body: 'Hi [Classmate Name],\n\nGusto ko lang itanong kung may updates o assignments tayo sa [Subject/Topic]. Alam mo ba kung may Google Classroom o group chat tayo para dito?\n\nSalamat!\n[Your Name]'
+    body: 'Hi Eldrex,\n\nGusto ko lang itanong kung may updates o assignments tayo sa [Subject/Topic]. Alam mo ba kung may Google Classroom o group chat tayo para dito?\n\nSalamat!\n[Your Name]'
   },
   {
     label: 'Homework Help / Clarification',
     subject: 'Help with [Assignment/Topic]',
-    body: 'Hello [Classmate Name],\n\nCan you help me understand [Assignment/Topic]? I am having some difficulty and would really appreciate your guidance.\n\nThanks in advance!\n[Your Name]'
+    body: 'Hello Eldrex,\n\nCan you help me understand [Assignment/Topic]? I am having some difficulty and would really appreciate your guidance.\n\nThanks in advance!\n[Your Name]'
   },
   {
     label: 'Group Project Invite',
     subject: 'Invitation to join [Project Name] Group',
-    body: 'Hi [Classmate Name],\n\nI am forming a group for [Project Name] and would like to know if you are interested in joining. We can discuss the tasks and deadlines together.\n\nLet me know!\n[Your Name]'
-  },
-  {
-    label: 'Teacher/Instructor Inquiry',
-    subject: 'Question regarding [Class/Topic]',
-    body: 'Dear [Teacher Name],\n\nI hope you are doing well. I have a question regarding [Class/Topic] and would like to clarify [Specific Question].\n\nThank you for your time.\n[Your Name]'
+    body: 'Hi Eldrex,\n\nI am forming a group for [Project Name] and would like to know if you are interested in joining. We can discuss the tasks and deadlines together.\n\nLet me know!\n[Your Name]'
   },
 
   // PERSONAL TEMPLATES
   {
-    label: 'Friendly Message (English)',
-    subject: 'Hey [Friend Name]!',
-    body: 'Hi [Friend Name],\n\nJust wanted to check in and see how you are doing. Also, wanted to ask if you are free to hang out or chat sometime soon!\n\nCheers,\n[Your Name]'
+    label: 'Friendly Message',
+    subject: 'Hey Eldrex!',
+    body: 'Hi Eldrex,\n\nJust wanted to check in and see how you are doing. Also, wanted to ask if you are free to hang out or chat sometime soon!\n\nCheers,\n[Your Name]'
   },
   {
-    label: 'Friendly Message (Tagalog)',
-    subject: 'Kumusta [Friend Name]!',
-    body: 'Hi [Friend Name],\n\nKumusta ka na? Gusto ko lang mag-check in at malaman kung free ka para mag-chat o magkita soon!\n\nIngat,\n[Your Name]'
+    label: 'Mensahe para sa Kaibigan',
+    subject: 'Kumusta Eldrex!',
+    body: 'Hi Eldrex,\n\nKumusta ka na? Gusto ko lang mag-check in at malaman kung free ka para mag-chat o magkita soon!\n\nIngat,\n[Your Name]'
   },
   {
     label: 'Casual Question to Stranger / Classmate',
@@ -76,12 +70,44 @@ const TEMPLATES = [
   {
     label: 'Thank You',
     subject: 'Thank You!',
-    body: 'Hi [Name],\n\nI just wanted to send a quick note to say thank you for [Reason]. I really appreciate your help and time.\n\nBest,\n[Your Name]'
+    body: 'Hi Eldrex,\n\nI just wanted to send a quick note to say thank you for [Reason]. I really appreciate your help and time.\n\nBest,\n[Your Name]'
   },
   {
     label: 'Follow-Up',
     subject: 'Follow-Up: [Previous Topic]',
-    body: 'Hi [Name],\n\nI hope this message finds you well. I just wanted to follow up on [Previous Topic] and see if there are any updates.\n\nThanks!\n[Your Name]'
+    body: 'Hi Eldrex,\n\nI hope this message finds you well. I just wanted to follow up on [Previous Topic] and see if there are any updates.\n\nThanks!\n[Your Name]'
+  },
+   {
+    label: 'Request for Image Removal',
+    subject: 'Request for Removal of Image: [Image/Article Name]',
+    body: 'Dear Eldrex,\n\nI am the copyright owner of the image used in your article "[Article Name]". I respectfully request that this image be removed from your website or replaced with proper credit.\n\nThank you for your understanding and prompt action.\n\nBest regards,\n[Your Name]'
+  },
+  {
+    label: 'Request for Credit Update',
+    subject: 'Request to Update Image Credit: [Image/Article Name]',
+    body: 'Hi Eldrex,\n\nI noticed that my work in "[Article Name]" does not have the correct attribution. I kindly request that the credit be updated to accurately reflect ownership.\n\nThank you for your attention.\n\nSincerely,\n[Your Name]'
+  },
+  {
+    label: 'Copyright Concern / Inquiry',
+    subject: 'Copyright Inquiry: [Image/Article Name]',
+    body: 'Dear Eldrex,\n\nI am writing to inquire about the use of my visual content in your article "[Article Name]". Please let me know the process to address any copyright concerns or to request removal/credit updates.\n\nThank you for your time.\n\nBest regards,\n[Your Name]'
+  },
+
+  // Tagalog Templates
+  {
+    label: 'Request for Image Removal (Tagalog)',
+    subject: 'Hiling para sa Pag-alis ng Larawan: [Pangalan ng Imahe/Artikulo]',
+    body: 'Mahal na Eldrex,\n\nAko ang may-ari ng copyright ng larawang ginamit sa artikulo mo na "[Pangalan ng Artikulo]". Nais ko pong hilingin na alisin ang larawang ito mula sa inyong website o palitan ng tamang kredito.\n\nMaraming salamat sa inyong pang-unawa at agarang aksyon.\n\nLubos na gumagalang,\n[Your Name]'
+  },
+  {
+    label: 'Request for Credit Update (Tagalog)',
+    subject: 'Hiling para sa Pag-update ng Kredito ng Larawan: [Pangalan ng Imahe/Artikulo]',
+    body: 'Hi Eldrex,\n\nNapansin ko po na ang aking gawa sa "[Pangalan ng Artikulo]" ay hindi nabigyan ng tamang kredito. Nais ko pong hilingin na ma-update ang kredito upang tama ang pagkilala sa may-ari.\n\nMaraming salamat sa inyong atensyon.\n\nTaos-pusong gumagalang,\n[Your Name]'
+  },
+  {
+    label: 'Copyright Concern / Inquiry (Tagalog)',
+    subject: 'Pag-aalala sa Copyright: [Pangalan ng Imahe/Artikulo]',
+    body: 'Mahal na Eldrex,\n\nSumusulat po ako upang magtanong tungkol sa paggamit ng aking visual content sa artikulo mo na "[Pangalan ng Artikulo]". Pakisabi po kung ano ang proseso para ma-address ang anumang copyright concern o para humiling ng pag-alis/pag-update ng kredito.\n\nMaraming salamat po sa inyong oras.\n\nLubos na gumagalang,\n[Your Name]'
   }
 ];
 
